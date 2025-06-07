@@ -1,0 +1,45 @@
+<html>
+   <h1>Jogo da Velha</h1> 
+
+   <head>
+     <style>
+        #game
+        {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+     </style>
+   </head>
+
+   <body>
+     <div id="game"></div>
+     <script>
+
+        const jogadas =['','','',
+                        '','','',
+                        '','','']
+
+        function fazerjogada(posicao)
+        {
+            jogadas[posicao] = "X";
+            desenhabot;
+        }
+
+        function desenhabot()
+        {
+            const game = document.querySelector("#game");
+            for(let i=0;i<9;i++)
+            {
+                game.innerHTML += `
+                   <button onclick ="fazerjogadas($(i))">
+                    ${jogadas[i]}
+                    
+                    </button>`
+            }
+           
+        }
+        desenhabot();
+
+     </script>
+   </body>
+</html>
