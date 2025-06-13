@@ -7,10 +7,19 @@
         {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+            width: 180px;
+            background-color:black ;
+            color: blue;
+            padding: 5px;
+
         }
         button
         {
             height: 50px;
+            border: solid 1px;
+            margin: 1px;
+            background-color: gray;
+            border-radius: 5px;
         }
      </style>
    </head>
@@ -23,19 +32,78 @@
                         '','','',
                         '','','']
 
+        let jogadorDaVez = "X";               
+        let totalDeJogadas = 0;
+
+        function verificajogada(posicao1, posicao2, posicao3)
+        {
+            if(jogadas[posicao1] == "" ||
+               jogadas[posicao2] == "" ||
+               jogadas[posicao3] == "" 
+              )
+              
+
+            return false
+
+            return
+            (
+                jogadas[posicao1] == jogadas[posicao2] &&
+                jogadas[posicao2] == jogadas[posicao3]
+            ) ;
+        }
+
+        function verificaganhador()
+        {
+            if 
+            (
+        
+            //linhas
+            verificajogada(0,1,2) ||
+            verificajogada(3,4,5) ||
+            verificajogada(6,7,8) ||
+            //colunas
+            verificajogada(0,3,6) ||
+            verificajogada(1,4,7) ||
+            verificajogada(2,5,8) ||
+            //diagonais
+            verificajogada(0,4,8) ||
+            verificajogada(2,4,6)
+
+            )
+
+            alert("fim de jogo")
+
+            if(totalDeJogadas == 9)
+            alert("deu velha");
+
+        }
+
         function fazerjogada(posicao)
         {
-            jogadas[posicao] = "X";
-            desenhabot;
+            if(jogadas[posicao] == "")
+
+            jogadas[posicao] = jogadorDaVez;
+
+            if(jogadorDaVez == "X")
+            jogadorDaVez = "O";
+
+            else
+            jogadorDaVez = "X";
+            
+            totalDeJogadas++;
+            verificaganhador();
+            desenhabot();
         }
 
         function desenhabot()
         {
             const game = document.querySelector("#game");
+            game.innerHTML = "";
+
             for(let i=0;i<9;i++)
             {
                 game.innerHTML += `
-                   <button onclick ="fazerjogadas($(i))">
+                   <button onclick ="fazerjogada(${i})">
                     ${jogadas[i]}
                     
                     </button>`
